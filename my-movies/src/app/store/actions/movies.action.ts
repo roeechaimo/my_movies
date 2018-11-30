@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import {Movie} from '../../core/models/movie.model';
 
 export const LOAD_MOVIES = '[Movies] Load Movies';
 

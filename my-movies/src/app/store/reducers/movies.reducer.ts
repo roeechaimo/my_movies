@@ -9,11 +9,12 @@ export const initialState: MoviesState = { data: [] };
 
 export function reducer(state = initialState, action: fromMovies.Actions): MoviesState{
     switch(action.type){
-        case fromMovies.LOAD_MOVIES: 
+        case fromMovies.LOAD_MOVIES: {
             return {
-                ...state, action.
+                ...state,
+                data: action.payload
             }
-        
+        }
     }
 
     return state;

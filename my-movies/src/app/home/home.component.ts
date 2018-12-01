@@ -9,6 +9,7 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  // TODO - dispatch actions to get movies
   ngOnInit() {
   }
 

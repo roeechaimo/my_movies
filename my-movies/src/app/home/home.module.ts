@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StoreModule } from '@ngrx/store';
-
+import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
-import { reducer } from '../store/reducers/movies.reducer';
 import { MovieService } from '../services/movie.service';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('movies', {moviesState: reducer})
+    SharedModule
   ],
   declarations: [HomeComponent],
   providers: [MovieService],

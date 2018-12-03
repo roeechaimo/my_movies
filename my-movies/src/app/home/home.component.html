@@ -1,9 +1,26 @@
 <div class="container">
   <header>
-    <h1>My movies</h1>
+    <h1>Will Ferrell is the king</h1>
   </header>
 
   <main>
-    
+    <mat-card *ngFor="let movie of movies">
+      <mat-card-header>
+        <mat-card-title>{{movie?.Title}}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div><span>Id: </span>{{movie?.Id}}</div>
+        <div><span>Runtime: </span>{{movie?.Runtime}}</div>
+        <div><span>Year: </span>{{movie?.Year}}</div>
+        <div><span>Genere: </span>{{movie?.Genere}}</div>
+        <div><span>Director: </span>{{movie?.Director}}</div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button>Edit</button>
+        <button mat-raised-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
   </main>
 </div>

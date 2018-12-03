@@ -1,0 +1,14 @@
+header {
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+
+  mat-card {
+    box-shadow: 2px 2px 2px 2px #e0ebeb;
+    margin: 1%;
+    flex: 1 1 43%;
+  }
+}

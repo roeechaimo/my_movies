@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
+import { MatDialog } from '@angular/material';
+
+import { MOVIES } from '../core/mocks/mocks';
 import { Movie } from '../core/models/movie.model';
 import { MovieService } from '../services/movie.service';
-import { environment } from 'src/environments/environment';
-import { MOVIES } from '../core/mocks/mocks';
+import { MovieDialogComponent } from '../shared/components/movie-dialog/movie-dialog.component';
 
 @Component({
   selector: "app-home",
@@ -13,19 +14,25 @@ import { MOVIES } from '../core/mocks/mocks';
 })
 export class HomeComponent implements OnInit {
   
-  public movies = [];
+  public movies: Movie[] = [];
   private moviesToGet = MOVIES; 
   
-  constructor(private _movieService: MovieService) {}
+  constructor(private _movieService: MovieService, private _dialog: MatDialog) {}
 
   // TODO - dispatch actions to get movies
   ngOnInit() {
     this.moviesToGet.map(movieToGet => {    
       this._movieService
         .getMovie(movieToGet)
-        .subscribe(movieRes => {
+        .subscribe((movieRes: Movie) => {
           this.movies.push(movieRes);
         });
+    })
+  }
+
+  public openDialog(movie) {
+    const dialogRef = this._dialog.open(MovieDialogComponent, {
+      data: movie
     })
   }
 }

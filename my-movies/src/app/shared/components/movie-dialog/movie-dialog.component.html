@@ -1,0 +1,52 @@
+<!-- TODO - check why the diaog opens in a weird way -->
+<div class="dialog-container">
+  <form [formGroup]="form">
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="text" formControlName="imdbId" />
+
+        <mat-error>{{errors.required}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="text" formControlName="title" />
+
+        <mat-error>{{errors.required}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="text" formControlName="runtime" />
+
+        <mat-error>{{errors.required}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="text" formControlName="year" />
+
+        <mat-error>{{errors.required}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="text" formControlName="gener" />
+
+        <mat-error>{{errors.required}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field>
+        <input matInput type="text" formControlName="director" />
+
+        <mat-error>{{errors.required}}</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>

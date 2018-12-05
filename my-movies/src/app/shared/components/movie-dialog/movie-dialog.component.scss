@@ -1,0 +1,15 @@
+.dialog-container * {
+  font-family: Impact,
+    Haettenschweiler,
+    'Arial Narrow Bold',
+    sans-serif;
+  color: #00b300;
+
+  .row {
+    display: flex;
+
+    .form-field {
+      margin: 1%;
+    }
+  }
+}

@@ -1,52 +1,80 @@
-<!-- TODO - check why the diaog opens in a weird way -->
 <div class="dialog-container">
-  <form [formGroup]="form">
-    <div class="form-field">
-      <mat-form-field>
-        <input matInput type="text" formControlName="imdbId" />
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <h3 mat-dialog-title>{{dialogHeader}}</h3>
 
-        <mat-error>{{errors.required}}</mat-error>
-      </mat-form-field>
-    </div>
+    <mat-dialog-content>
+      <div class="row">
+        <div class="form-field">
+          <mat-form-field>
+            <label>Id: </label>
 
-    <div class="form-field">
-      <mat-form-field>
-        <input matInput type="text" formControlName="title" />
+            <input matInput type="text" formControlName="imdbId" />
 
-        <mat-error>{{errors.required}}</mat-error>
-      </mat-form-field>
-    </div>
+            <mat-error>{{errors.required}}</mat-error>
+          </mat-form-field>
+        </div>
 
-    <div class="form-field">
-      <mat-form-field>
-        <input matInput type="text" formControlName="runtime" />
+        <div class="form-field">
+          <mat-form-field>
+            <label>Title: </label>
 
-        <mat-error>{{errors.required}}</mat-error>
-      </mat-form-field>
-    </div>
+            <input matInput type="text" formControlName="title" />
 
-    <div class="form-field">
-      <mat-form-field>
-        <input matInput type="text" formControlName="year" />
+            <mat-error>{{errors.required}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
 
-        <mat-error>{{errors.required}}</mat-error>
-      </mat-form-field>
-    </div>
+      <div class="row">
+        <div class="form-field">
+          <mat-form-field>
+            <label>Runtime: </label>
 
-    <div class="form-field">
-      <mat-form-field>
-        <input matInput type="text" formControlName="gener" />
+            <input matInput type="text" formControlName="runtime" />
 
-        <mat-error>{{errors.required}}</mat-error>
-      </mat-form-field>
-    </div>
+            <mat-error>{{errors.required}}</mat-error>
+          </mat-form-field>
+        </div>
 
-    <div class="form-field">
-      <mat-form-field>
-        <input matInput type="text" formControlName="director" />
+        <div class="form-field">
+          <mat-form-field>
+            <label>Year: </label>
 
-        <mat-error>{{errors.required}}</mat-error>
-      </mat-form-field>
-    </div>
+            <input matInput type="text" formControlName="year" />
+
+            <mat-error>{{errors.required}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-field">
+          <mat-form-field>
+            <label>Gener: </label>
+
+            <input matInput type="text" formControlName="genre" />
+
+            <mat-error>{{errors.required}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field>
+            <label>Director: </label>
+
+            <input matInput type="text" formControlName="director" />
+
+            <mat-error>{{errors.required}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-raised-button type="submit">Save</button>
+
+      <button mat-raised-button>Cancel</button>
+    </mat-dialog-actions>
   </form>
 </div>

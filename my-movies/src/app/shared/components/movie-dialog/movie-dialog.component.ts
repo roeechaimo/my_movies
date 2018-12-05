@@ -27,7 +27,7 @@ export class MovieDialogComponent implements OnInit {
   public form: FormGroup;
   public errors = {};
   public movie: Movie;
-  public dialogHeader: string = "";
+  public dialogHeader: string = "Create";
 
   private _pattern = "^[1-9]{1,4}$";
 
@@ -60,15 +60,12 @@ export class MovieDialogComponent implements OnInit {
   private initDialogHeader() {
     if (this.movie) {
       this.dialogHeader = "Edit";
-
-      return;
-    }
-
-    this.dialogHeader = "Create";
+    }    
   }
 
   private initForm() {
     this.form = this._fb.group({
+      // TODO - createg pipe for title
       title: [this.movie.Title || "", [Validators.required]],
       imdbId: [{
           value: this.movie.imdbID || "",
@@ -78,8 +75,7 @@ export class MovieDialogComponent implements OnInit {
       ],
       runtime: [this.movie.Runtime || "", [Validators.required]],
       year: [
-        +this.movie.Year || "",
-        // TODO - test regexp
+        +this.movie.Year || "",        
         [Validators.required,
           Validators.pattern(this._pattern)
         ]

@@ -42,7 +42,9 @@
 
             <input matInput type="text" formControlName="year" />
 
-            <mat-error>{{errors.required}}</mat-error>
+            <mat-error *ngIf="year.errors?.required">{{errors.required}}</mat-error>
+
+            <mat-error *ngIf="year.errors?.pattern">{{errors.pattern}}</mat-error>
           </mat-form-field>
         </div>
       </div>

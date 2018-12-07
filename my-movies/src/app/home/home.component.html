@@ -3,12 +3,12 @@
     <h1>Will Ferrell is the king</h1>
   </header>
 
-  <img src="../../assets/baseline_add_box_white_36dp.png" (click)="openDialog('')" />
+  <img src="../../assets/baseline_add_box_white_36dp.png" (click)="openMovieDialog('')" />
 
   <main>
     <mat-card *ngFor="let movie of movies">
       <mat-card-header>
-        <mat-card-title>{{movie?.Title}}</mat-card-title>
+        <mat-card-title>{{movie?.Title | titlecase | removeNonAlpha}}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
@@ -24,9 +24,9 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button (click)="openDialog(movie)">Edit</button>
+        <button mat-raised-button (click)="openMovieDialog(movie)">Edit</button>
 
-        <button mat-raised-button>Delete</button>
+        <button mat-raised-button (click)="openDeleteDialog(movie)">Delete</button>
       </mat-card-actions>
     </mat-card>
   </main>

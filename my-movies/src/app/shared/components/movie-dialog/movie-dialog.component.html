@@ -13,7 +13,8 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="title" placeholder="Title: " />
+          <input matInput type="text" formControlName="title" [value]="form.get('title').value | titlecase | removeNonAlpha"
+            placeholder="Title: " />
 
           <mat-error>{{errors.required}}</mat-error>
         </mat-form-field>
@@ -29,11 +30,11 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="year" placeholder="Year: " />
+          <input matInput type="number" formControlName="year" placeholder="Year: " />
 
           <mat-error *ngIf="year.errors?.required">{{errors.required}}</mat-error>
 
-          <mat-error *ngIf="year.errors?.pattern">{{errors.pattern}}</mat-error>
+          <mat-error *ngIf="year.errors?.min || year.errors?.max">{{errors.pattern}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -57,7 +58,7 @@
     <mat-dialog-actions>
       <button mat-raised-button type="submit">Save</button>
 
-      <button mat-raised-button>Cancel</button>
+      <button mat-raised-button mat-dialog-close>Cancel</button>
     </mat-dialog-actions>
   </form>
 </div>

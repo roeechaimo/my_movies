@@ -27,13 +27,11 @@ export class MovieDialogComponent implements OnInit {
   public form: FormGroup;
   public errors = {};
   public movie: Movie;
-  public dialogHeader: string = "Create";
-
-  private _pattern = "^[1-9]{1,4}$";
+  public dialogHeader: string = "Create";  
 
   constructor(
     private _fb: FormBuilder,
-    private _dialogRef: MatDialogRef < MovieDialogComponent > ,
+    private _dialogRef: MatDialogRef<MovieDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private _data: Movie
   ) {}
 
@@ -46,6 +44,8 @@ export class MovieDialogComponent implements OnInit {
 
   // TODO - dispatch action
   public submitForm() {
+    console.log(this.form.value);
+
     if (this.form.invalid) {
       return;
     }
@@ -54,20 +54,20 @@ export class MovieDialogComponent implements OnInit {
   }
 
   get year() {
-    return this.form.get('year');
+    return this.form.get("year");
   }
 
   private initDialogHeader() {
     if (this.movie) {
       this.dialogHeader = "Edit";
-    }    
+    }
   }
 
   private initForm() {
     this.form = this._fb.group({
-      // TODO - createg pipe for title
       title: [this.movie.Title || "", [Validators.required]],
-      imdbId: [{
+      imdbId: [
+        {
           value: this.movie.imdbID || "",
           disabled: this.movie ? true : false
         },
@@ -75,10 +75,8 @@ export class MovieDialogComponent implements OnInit {
       ],
       runtime: [this.movie.Runtime || "", [Validators.required]],
       year: [
-        +this.movie.Year || "",        
-        [Validators.required,
-          Validators.pattern(this._pattern)
-        ]
+        +this.movie.Year || "",
+        [Validators.required, Validators.min(1), Validators.max(2019)]
       ],
       genre: [this.movie.Genre || "", [Validators.required]],
       director: [this.movie.Director || "", [Validators.required]]
@@ -88,7 +86,7 @@ export class MovieDialogComponent implements OnInit {
   private initFormErrors() {
     this.errors = {
       required: "This field is required",
-      pattern: "Must enter a valid year",
+      pattern: "Must enter a valid year"
     };
   }
 }

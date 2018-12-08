@@ -940,7 +940,7 @@ __webpack_require__.r(__webpack_exports__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-var environment = { production: false, baseUrl: "http://www.omdbapi.com/", apiParams: { apiKey: "?apikey=4293d2b8" } };
+var environment = { production: false, baseUrl: "https://www.omdbapi.com/", apiParams: { apiKey: "?apikey=4293d2b8" } };
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can

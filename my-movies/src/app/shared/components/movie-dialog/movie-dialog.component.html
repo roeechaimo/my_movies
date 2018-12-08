@@ -34,7 +34,7 @@
 
           <mat-error *ngIf="year.errors?.required">{{errors.required}}</mat-error>
 
-          <mat-error *ngIf="year.errors?.min || year.errors?.max">{{errors.pattern}}</mat-error>
+          <mat-error *ngIf="year.errors?.min || year.errors?.max">{{errors.number}}</mat-error>
         </mat-form-field>
       </div>
 

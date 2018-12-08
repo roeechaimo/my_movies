@@ -1,11 +1,20 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  ChangeDetectorRef,
+  AfterViewChecked  
 } from '@angular/core';
 
 import {
+  Observable
+} from 'rxjs';
+import {
   MatDialog
 } from '@angular/material';
+import {
+  Select,
+  Store
+} from '@ngxs/store';
 
 import {
   MOVIES
@@ -14,42 +23,45 @@ import {
   Movie
 } from '../core/models/movie.model';
 import {
-  MovieService
-} from '../services/movie.service';
-import {
   MovieDialogComponent
 } from '../shared/components/movie-dialog/movie-dialog.component';
 import {
   DeleteDialogComponent
 } from '../shared/components/delete-dialog/delete-dialog.component';
+import {
+  LoadMovies
+} from '../store/movie/movie.actions';
 
 @Component({
-  selector: "app-home",
+  selector: "app-home",  
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewChecked {
+  @Select(state => state.movie.movies[0]) movies$: Observable<any>;
 
   public movies: Movie[] = [];
   private moviesToGet = MOVIES;
 
-  constructor(private _movieService: MovieService, private _movieDialog: MatDialog, private _deleteDialog: MatDialog) {}
+  constructor(    
+    private _cdRef: ChangeDetectorRef,
+    private _store: Store,
+    private _movieDialog: MatDialog,
+    private _deleteDialog: MatDialog
+  ) {}
 
-  // TODO - dispatch actions to get movies
-  ngOnInit() {
-    this.moviesToGet.map(movieToGet => {
-      this._movieService
-        .getMovie(movieToGet)
-        .subscribe((movieRes: Movie) => {
-          this.movies.push(movieRes);
-        });
-    })
+  ngOnInit() {    
+    this._store.dispatch(new LoadMovies(this.moviesToGet));
+  }  
+
+  ngAfterViewChecked() {
+    this._cdRef.detectChanges();    
   }
 
   public openMovieDialog(movie) {
     const dialogRef = this._movieDialog.open(MovieDialogComponent, {
       data: movie
-    })
+    });
   }
 
   public openDeleteDialog(movie) {

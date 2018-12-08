@@ -6,7 +6,7 @@
   <img src="../../assets/baseline_add_box_white_36dp.png" (click)="openMovieDialog('')" />
 
   <main>
-    <mat-card *ngFor="let movie of movies">
+    <mat-card *ngFor="let movie of (movies$ | async)">
       <mat-card-header>
         <mat-card-title>{{movie?.Title | titlecase | removeNonAlpha}}</mat-card-title>
       </mat-card-header>

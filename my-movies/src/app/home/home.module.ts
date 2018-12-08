@@ -8,7 +8,7 @@ import { HomeComponent } from './home.component';
 @NgModule({
   imports: [CommonModule, SharedModule],
   declarations: [HomeComponent],
-  providers: [MovieService],  
+  providers: [MovieService],
   exports: [HomeComponent]
 })
 export class HomeModule {}

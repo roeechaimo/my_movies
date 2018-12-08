@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from "@ngxs/logger-plugin";
 
 import { MovieState } from './store/movie/movie.stste';
 import { SharedModule } from './shared/shared.module';
@@ -16,6 +17,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     NgxsModule.forRoot([MovieState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
     HomeModule,
     SharedModule,
     HttpClientModule

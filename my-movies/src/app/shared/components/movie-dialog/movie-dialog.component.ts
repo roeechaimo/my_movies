@@ -13,10 +13,17 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material';
+import {
+  Store
+} from '@ngxs/store';
 
 import {
   Movie
 } from 'src/app/core/models/movie.model';
+import {
+  UpdateMovie,
+  CreateMovie
+} from 'src/app/store/movie/movie.actions';
 
 @Component({
   selector: "app-movie-dialog",
@@ -27,11 +34,12 @@ export class MovieDialogComponent implements OnInit {
   public form: FormGroup;
   public errors = {};
   public movie: Movie;
-  public dialogHeader: string = "Create";  
+  public dialogHeader: string = "Create";
 
   constructor(
     private _fb: FormBuilder,
-    private _dialogRef: MatDialogRef<MovieDialogComponent>,
+    private _store: Store,
+    private _dialogRef: MatDialogRef < MovieDialogComponent > ,
     @Inject(MAT_DIALOG_DATA) private _data: Movie
   ) {}
 
@@ -42,19 +50,22 @@ export class MovieDialogComponent implements OnInit {
     this.initDialogHeader();
   }
 
-  // TODO - dispatch action
   public submitForm() {
-    console.log(this.form.value);
-
     if (this.form.invalid) {
       return;
     }
 
-    console.log(this.form.value);
+    if (this.movie) {
+      this._store.dispatch(new UpdateMovie(this.form.getRawValue())).subscribe(() => this._dialogRef.close());
+
+      return;
+    }
+
+    this._store.dispatch(new CreateMovie(this.form.getRawValue())).subscribe(() => this._dialogRef.close());
   }
 
   get year() {
-    return this.form.get("year");
+    return this.form.get("Year");
   }
 
   private initDialogHeader() {
@@ -65,21 +76,20 @@ export class MovieDialogComponent implements OnInit {
 
   private initForm() {
     this.form = this._fb.group({
-      title: [this.movie.Title || "", [Validators.required]],
-      imdbId: [
-        {
+      Title: [this.movie.Title || "", [Validators.required]],
+      imdbID: [{
           value: this.movie.imdbID || "",
           disabled: this.movie ? true : false
         },
         [Validators.required]
       ],
-      runtime: [this.movie.Runtime || "", [Validators.required]],
-      year: [
+      Runtime: [this.movie.Runtime || "", [Validators.required]],
+      Year: [
         +this.movie.Year || "",
         [Validators.required, Validators.min(1), Validators.max(2019)]
       ],
-      genre: [this.movie.Genre || "", [Validators.required]],
-      director: [this.movie.Director || "", [Validators.required]]
+      Genre: [this.movie.Genre || "", [Validators.required]],
+      Director: [this.movie.Director || "", [Validators.required]]
     });
   }
 

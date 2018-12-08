@@ -5,7 +5,7 @@
     <mat-dialog-content>
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="imdbId" placeholder="Id: " />
+          <input matInput type="text" formControlName="imdbID" placeholder="Id: " />
 
           <mat-error>{{errors.required}}</mat-error>
         </mat-form-field>
@@ -13,7 +13,7 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="title" [value]="form.get('title').value | titlecase | removeNonAlpha"
+          <input matInput type="text" formControlName="Title" [value]="form.get('Title').value | titlecase | removeNonAlpha"
             placeholder="Title: " />
 
           <mat-error>{{errors.required}}</mat-error>
@@ -22,7 +22,7 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="runtime" placeholder="Runtime: " />
+          <input matInput type="text" formControlName="Runtime" placeholder="Runtime: " />
 
           <mat-error>{{errors.required}}</mat-error>
         </mat-form-field>
@@ -30,7 +30,7 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="number" formControlName="year" placeholder="Year: " />
+          <input matInput type="number" formControlName="Year" placeholder="Year: " />
 
           <mat-error *ngIf="year.errors?.required">{{errors.required}}</mat-error>
 
@@ -40,7 +40,7 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="genre" placeholder="Gener: " />
+          <input matInput type="text" formControlName="Genre" placeholder="Gener: " />
 
           <mat-error>{{errors.required}}</mat-error>
         </mat-form-field>
@@ -48,7 +48,7 @@
 
       <div class="form-field">
         <mat-form-field>
-          <input matInput type="text" formControlName="director" placeholder="Director: " />
+          <input matInput type="text" formControlName="Director" placeholder="Director: " />
 
           <mat-error>{{errors.required}}</mat-error>
         </mat-form-field>

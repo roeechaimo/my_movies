@@ -7,7 +7,7 @@
         <mat-form-field>
           <input matInput type="text" formControlName="imdbID" placeholder="Id: " />
 
-          <mat-error>{{errors.required}}</mat-error>
+          <mat-error>This field is required</mat-error>
         </mat-form-field>
       </div>
 
@@ -16,7 +16,7 @@
           <input matInput type="text" formControlName="Title" [value]="form.get('Title').value | titlecase | removeNonAlpha"
             placeholder="Title: " />
 
-          <mat-error>{{errors.required}}</mat-error>
+          <mat-error>This field is required</mat-error>
         </mat-form-field>
       </div>
 
@@ -24,7 +24,7 @@
         <mat-form-field>
           <input matInput type="text" formControlName="Runtime" placeholder="Runtime: " />
 
-          <mat-error>{{errors.required}}</mat-error>
+          <mat-error>This field is required</mat-error>
         </mat-form-field>
       </div>
 
@@ -32,7 +32,7 @@
         <mat-form-field>
           <input matInput type="number" formControlName="Year" placeholder="Year: " />
 
-          <mat-error *ngIf="year.errors?.required">{{errors.required}}</mat-error>
+          <mat-error *ngIf="year.errors?.required">This field is required</mat-error>
 
           <mat-error *ngIf="year.errors?.min || year.errors?.max">{{errors.number}}</mat-error>
         </mat-form-field>
@@ -42,7 +42,7 @@
         <mat-form-field>
           <input matInput type="text" formControlName="Genre" placeholder="Gener: " />
 
-          <mat-error>{{errors.required}}</mat-error>
+          <mat-error>This field is required</mat-error>
         </mat-form-field>
       </div>
 
@@ -50,7 +50,7 @@
         <mat-form-field>
           <input matInput type="text" formControlName="Director" placeholder="Director: " />
 
-          <mat-error>{{errors.required}}</mat-error>
+          <mat-error>This field is required</mat-error>
         </mat-form-field>
       </div>
     </mat-dialog-content>

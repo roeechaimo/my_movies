@@ -94,8 +94,7 @@ export class MovieDialogComponent implements OnInit {
   }
 
   private initFormErrors() {
-    this.errors = {
-      required: "This field is required",
+    this.errors = {      
       number: "Must enter a valid year"
     };
   }

@@ -2,7 +2,7 @@ import {
   Component,
   OnInit,
   ChangeDetectorRef,
-  AfterViewChecked  
+  AfterViewChecked
 } from '@angular/core';
 
 import {
@@ -31,31 +31,40 @@ import {
 import {
   LoadMovies
 } from '../store/movie/movie.actions';
+import {
+  environment
+} from 'src/environments/environment';
 
 @Component({
-  selector: "app-home",  
+  selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit, AfterViewChecked {
-  @Select(state => state.movie.movies[0]) movies$: Observable<any>;
+  @Select(state => state.movie.movies[0]) movies$: Observable < any > ;
 
   public movies: Movie[] = [];
-  private moviesToGet = MOVIES;
+  public iconSrc: string = '';
 
-  constructor(    
+  private moviesToGet = MOVIES;
+  public isProduction = environment.production;
+
+  constructor(
     private _cdRef: ChangeDetectorRef,
     private _store: Store,
     private _movieDialog: MatDialog,
     private _deleteDialog: MatDialog
   ) {}
 
-  ngOnInit() {    
+  ngOnInit() {
     this._store.dispatch(new LoadMovies(this.moviesToGet));
-  }  
+    this.iconSrc = !this.isProduction 
+      ? '../../ assets / baseline_add_box_white_36dp.png' 
+      : '../ assets / baseline_add_box_white_36dp.png';
+  }
 
   ngAfterViewChecked() {
-    this._cdRef.detectChanges();    
+    this._cdRef.detectChanges();
   }
 
   public openMovieDialog(movie) {

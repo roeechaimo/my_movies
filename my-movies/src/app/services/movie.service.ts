@@ -22,12 +22,14 @@ export class MovieService {
   public moviesObs = new Observable(observer => {    
     this.movies.map(movie => {
       movie.subscribe(res => {
-        this.moviesToReturn.push(res);
+        this.moviesToReturn = [...this.moviesToReturn, res];
+
+        if (this.moviesToReturn.length  === this.movies.length) {
+          observer.next(this.moviesToReturn);
+          observer.complete();
+        }
       });
     })
-
-    observer.next(this.moviesToReturn);
-    observer.complete();
 
     return {
       unsubscribe() {}

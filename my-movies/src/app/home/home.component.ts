@@ -44,10 +44,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   @Select(state => state.movie.movies[0]) movies$: Observable < any > ;
 
   public movies: Movie[] = [];
-  public iconSrc: string = '';
 
   private moviesToGet = MOVIES;
-  public isProduction = environment.production;
 
   constructor(
     private _cdRef: ChangeDetectorRef,
@@ -58,9 +56,6 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this._store.dispatch(new LoadMovies(this.moviesToGet));
-    this.iconSrc = !this.isProduction 
-      ? '../../ assets / baseline_add_box_white_36dp.png' 
-      : '../ assets / baseline_add_box_white_36dp.png';
   }
 
   ngAfterViewChecked() {

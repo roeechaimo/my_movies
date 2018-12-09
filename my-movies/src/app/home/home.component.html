@@ -3,8 +3,7 @@
     <h1>Will Ferrell is the king</h1>
   </header>
 
-  <img [src]="!isProduction ? '../../assets/baseline_add_box_white_36dp.png' : '../assets/baseline_add_box_white_36dp.png'" 
-    (click)="openMovieDialog('')" />
+  <img src="assets/baseline_add_box_white_36dp.png" (click)="openMovieDialog('')" />
 
   <main>
     <mat-card *ngFor="let movie of (movies$ | async)">
